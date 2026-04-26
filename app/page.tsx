@@ -388,16 +388,16 @@ export default function MemoryApp() {
               </motion.div>
               <div>
                 <h1 className="font-display text-2xl font-bold text-white tracking-tight">MemoryGym</h1>
-                <p className="text-blue-300/50 text-xs mt-0.5">{QUOTES[new Date().getDate() % QUOTES.length]}</p>
+                <p className="text-slate-500 text-xs mt-0.5">{QUOTES[new Date().getDate() % QUOTES.length]}</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
               {canInstall && (
-                <button onClick={install} className="glass rounded-xl px-3 py-2 text-xs text-blue-300/70 hover:text-white flex items-center gap-1.5 transition-colors">
+                <button onClick={install} className="glass rounded-xl px-3 py-2 text-xs text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors">
                   <Download className="w-3.5 h-3.5" /> Install
                 </button>
               )}
-              <button onClick={() => setView('progress')} className="glass rounded-xl p-2.5 text-blue-300/60 hover:text-white transition-colors">
+              <button onClick={() => setView('progress')} className="glass rounded-xl p-2.5 text-slate-400 hover:text-white transition-colors">
                 <BarChart2 className="w-4 h-4" />
               </button>
               <button onClick={() => { setView('coach'); if (!insight) getInsight(stats, currentStreak) }}
@@ -405,7 +405,7 @@ export default function MemoryApp() {
                 <Sparkles className="w-4 h-4" />
               </button>
               <button onClick={() => notifPerm !== 'granted' ? requestNotif() : null}
-                className={`glass rounded-xl p-2.5 transition-colors ${notifPerm === 'granted' ? 'text-green-400' : 'text-blue-300/60 hover:text-white'}`}>
+                className={`glass rounded-xl p-2.5 transition-colors ${notifPerm === 'granted' ? 'text-green-400' : 'text-slate-400 hover:text-white'}`}>
                 {notifPerm === 'granted' ? <Bell className="w-4 h-4" /> : <BellOff className="w-4 h-4" />}
               </button>
             </div>
@@ -418,17 +418,17 @@ export default function MemoryApp() {
                 <div className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                   <span className="font-display font-semibold text-white text-sm">Level {level}</span>
-                  <span className="text-blue-300/40 text-xs">· {getLevelTitle(level)}</span>
+                  <span className="text-slate-400 text-xs">· {getLevelTitle(level)}</span>
                 </div>
-                <span className="text-blue-300/40 text-xs">{stats.xp} XP total</span>
+                <span className="text-slate-400 text-xs">{stats.xp} XP total</span>
               </div>
-              <div className="w-full bg-white/8 rounded-full h-2 overflow-hidden">
+              <div className="w-full bg-slate-600 rounded-full h-2 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }} animate={{ width: `${getLevelProgress(stats.xp) / XP_PER_LEVEL * 100}%` }}
                   transition={{ duration: 1, ease: 'easeOut' }} className="h-2 rounded-full xp-bar-fill"
                 />
               </div>
-              <div className="flex justify-between text-xs mt-1.5 text-blue-300/30">
+              <div className="flex justify-between text-xs mt-1.5 text-slate-400">
                 <span>{getLevelProgress(stats.xp)} / {XP_PER_LEVEL} XP</span>
                 <span>{getAccuracy(stats.attempts) !== null ? `${getAccuracy(stats.attempts)}% accuracy` : 'Start training'}</span>
               </div>
@@ -439,35 +439,35 @@ export default function MemoryApp() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.12 }} className="grid grid-cols-3 gap-3">
             <div className="glass rounded-2xl p-4 text-center">
               <div className={`w-10 h-10 mx-auto mb-2 rounded-xl flex items-center justify-center ${currentStreak > 0 ? 'bg-orange-500/20 streak-pulse' : 'bg-white/5'}`}>
-                <Flame className={`w-5 h-5 ${currentStreak > 0 ? 'text-orange-400' : 'text-white/20'}`} />
+                <Flame className={`w-5 h-5 ${currentStreak > 0 ? 'text-orange-400' : 'text-slate-500'}`} />
               </div>
               <p className="font-display font-bold text-2xl text-white">{currentStreak}</p>
-              <p className="text-xs text-blue-300/40 mt-0.5">day streak</p>
+              <p className="text-xs text-slate-400 mt-0.5">day streak</p>
             </div>
             <div className="glass rounded-2xl p-4 text-center">
               <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-green-500/15 flex items-center justify-center">
                 <Zap className="w-5 h-5 text-green-400" />
               </div>
-              <p className="font-display font-bold text-2xl text-white">{completedToday.length}<span className="text-sm font-normal text-blue-300/40">/{EXERCISES.length}</span></p>
-              <p className="text-xs text-blue-300/40 mt-0.5">today</p>
+              <p className="font-display font-bold text-2xl text-white">{completedToday.length}<span className="text-sm font-normal text-slate-400">/{EXERCISES.length}</span></p>
+              <p className="text-xs text-slate-400 mt-0.5">today</p>
             </div>
             <div className="glass rounded-2xl p-4 text-center">
               <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-yellow-500/15 flex items-center justify-center">
                 <Trophy className="w-5 h-5 text-yellow-400" />
               </div>
               <p className="font-display font-bold text-2xl text-white">{longestStreak}</p>
-              <p className="text-xs text-blue-300/40 mt-0.5">best streak</p>
+              <p className="text-xs text-slate-400 mt-0.5">best streak</p>
             </div>
           </motion.div>
 
           {/* Today Progress Bar */}
           {pct > 0 && pct < 100 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass rounded-2xl px-4 py-3">
-              <div className="flex justify-between text-xs text-blue-300/50 mb-2">
+              <div className="flex justify-between text-xs text-slate-500 mb-2">
                 <span>Today's progress</span>
                 <span>{Math.round(pct)}%</span>
               </div>
-              <div className="w-full bg-white/8 rounded-full h-1.5">
+              <div className="w-full bg-slate-600 rounded-full h-1.5">
                 <motion.div animate={{ width: `${pct}%` }} transition={{ duration: 0.6 }} className="h-1.5 bg-green-400 rounded-full" />
               </div>
             </motion.div>
@@ -477,7 +477,7 @@ export default function MemoryApp() {
           <div>
             <div className="flex justify-between items-center mb-3">
               <h2 className="font-display font-semibold text-white text-base">Today's Training</h2>
-              <span className="text-xs text-blue-300/30">{new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</span>
+              <span className="text-xs text-slate-400">{new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {EXERCISES.map((ex, i) => {
@@ -497,15 +497,15 @@ export default function MemoryApp() {
                           </div>
                           <div>
                             <p className="font-display font-semibold text-white text-sm">{ex.title}</p>
-                            <p className="text-xs text-blue-300/40 mt-0.5 leading-tight">{ex.description}</p>
+                            <p className="text-xs text-slate-400 mt-0.5 leading-tight">{ex.description}</p>
                           </div>
                         </div>
                         {done
                           ? <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
-                          : <Circle className="w-5 h-5 text-white/12 flex-shrink-0" />
+                          : <Circle className="w-5 h-5 text-slate-500 flex-shrink-0" />
                         }
                       </div>
-                      <div className="flex justify-between items-center text-xs text-blue-300/35">
+                      <div className="flex justify-between items-center text-xs text-slate-400">
                         <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{ex.duration}m</span>
                         <span className={`font-medium ${done ? 'text-green-400/60' : 'text-yellow-400/70'}`}>+{ex.xpReward} XP</span>
                         {acc !== null ? <span>{acc}%</span> : <span className="opacity-0">0%</span>}
@@ -522,8 +522,8 @@ export default function MemoryApp() {
           {/* Week Strip + Share */}
           <div className="glass rounded-2xl p-4">
             <div className="flex justify-between items-center mb-3">
-              <span className="text-xs font-medium text-blue-300/50">This week</span>
-              <button onClick={handleShare} className="flex items-center gap-1.5 text-xs text-blue-300/50 hover:text-blue-300 transition-colors">
+              <span className="text-xs font-medium text-slate-500">This week</span>
+              <button onClick={handleShare} className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-blue-300 transition-colors">
                 <Share2 className="w-3.5 h-3.5" /> Share streak
               </button>
             </div>
@@ -534,7 +534,7 @@ export default function MemoryApp() {
                 const isToday = d.toDateString() === new Date().toDateString()
                 return (
                   <div key={i} className="text-center">
-                    <p className="text-xs text-blue-300/25 mb-1.5">{d.toLocaleDateString('en-US', { weekday: 'short' })}</p>
+                    <p className="text-xs text-slate-400 mb-1.5">{d.toLocaleDateString('en-US', { weekday: 'short' })}</p>
                     <div className={`aspect-square rounded-xl flex items-center justify-center text-xs font-medium transition-all ${done ? 'bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/25' : isToday ? 'border-2 border-blue-400/60 text-blue-300 bg-blue-500/8' : 'bg-white/4 text-blue-300/20'}`}>
                       {done ? <CheckCircle2 className="w-4 h-4" /> : d.getDate()}
                     </div>
@@ -556,9 +556,9 @@ export default function MemoryApp() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-white">AI Memory Coach</p>
-                  <p className="text-xs text-blue-300/40 mt-0.5">Get personalized insights on your weak areas</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Get personalized insights on your weak areas</p>
                 </div>
-                <ChevronRight className="w-4 h-4 text-blue-300/30 group-hover:text-purple-400 transition-colors flex-shrink-0" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-purple-400 transition-colors flex-shrink-0" />
               </div>
             </motion.div>
           )}
@@ -568,7 +568,7 @@ export default function MemoryApp() {
             <div className="install-banner rounded-2xl p-4 flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-white">Install MemoryGym</p>
-                <p className="text-xs text-blue-300/60">Add to home screen for daily reminders</p>
+                <p className="text-xs text-slate-400">Add to home screen for daily reminders</p>
               </div>
               <Button onClick={install} className="bg-blue-600 hover:bg-blue-500 text-white text-xs px-4 py-2 h-auto rounded-xl">Install</Button>
             </div>
@@ -593,7 +593,7 @@ export default function MemoryApp() {
                   <Download className="w-4 h-4" /> Download
                 </a>
                 <button onClick={() => setShareImg(null)}
-                  className="glass rounded-xl text-blue-300/70 hover:text-white text-sm transition-colors">
+                  className="glass rounded-xl text-slate-300 hover:text-white text-sm transition-colors">
                   Close
                 </button>
               </div>
@@ -614,7 +614,7 @@ export default function MemoryApp() {
                 </motion.div>
                 <div>
                   <h2 className="font-display text-2xl font-bold text-white">Day Complete!</h2>
-                  <p className="text-blue-300/60 text-sm mt-1">All {EXERCISES.length} exercises crushed.</p>
+                  <p className="text-slate-400 text-sm mt-1">All {EXERCISES.length} exercises crushed.</p>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-orange-500/10 border border-orange-500/20 rounded-2xl p-3">
@@ -622,7 +622,7 @@ export default function MemoryApp() {
                     <p className="font-display font-bold text-2xl text-orange-400">{currentStreak}🔥</p>
                   </div>
                   <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-3">
-                    <p className="text-xs text-blue-300/60">Level</p>
+                    <p className="text-xs text-slate-400">Level</p>
                     <p className="font-display font-bold text-2xl text-blue-400">{level}</p>
                   </div>
                 </div>
@@ -665,7 +665,7 @@ function ExWrap({ title, children, onClose, color = 'blue' }: any) {
       <div className="mesh-bg" />
       <div className="relative z-10 max-w-lg mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-6">
-          <button onClick={onClose} className="flex items-center gap-1.5 text-blue-300/50 hover:text-white text-sm transition-colors">
+          <button onClick={onClose} className="flex items-center gap-1.5 text-slate-500 hover:text-white text-sm transition-colors">
             <ArrowLeft className="w-4 h-4" />Back
           </button>
           <h2 className={`font-display font-semibold text-base ${c.text}`}>{title}</h2>
@@ -695,7 +695,7 @@ function FeedbackBlock({ isCorrect, detail, customMessage, onComplete, sound }: 
       </motion.div>
       <div>
         <h3 className="font-display text-xl font-bold text-white">{isCorrect ? '✨ Excellent!' : '🎯 Good Try!'}</h3>
-        <p className="text-blue-300/50 text-sm mt-1">{customMessage || (isCorrect ? 'Perfect. Your brain is stronger.' : 'Every attempt strengthens your memory.')}</p>
+        <p className="text-slate-500 text-sm mt-1">{customMessage || (isCorrect ? 'Perfect. Your brain is stronger.' : 'Every attempt strengthens your memory.')}</p>
       </div>
       {detail && <div className="glass rounded-xl p-4">{detail}</div>}
       <Button onClick={onComplete} className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-display font-semibold">
@@ -779,7 +779,7 @@ function SimonSaysEx({ exerciseState, setExerciseState, onComplete, onClose, lev
             </div>
             <div>
               <h3 className="font-display text-xl font-bold text-white mb-2">Simon Says</h3>
-              <p className="text-blue-300/50 text-sm">Watch the sequence of colored flashes, then repeat it in order. Length: <span className="text-white font-medium">{targetLen}</span></p>
+              <p className="text-slate-500 text-sm">Watch the sequence of colored flashes, then repeat it in order. Length: <span className="text-white font-medium">{targetLen}</span></p>
               {highScore > 0 && <p className="text-pink-400/60 text-xs mt-2">Your best: {highScore} steps</p>}
             </div>
             <SimonButtons />
@@ -790,7 +790,7 @@ function SimonSaysEx({ exerciseState, setExerciseState, onComplete, onClose, lev
         {(phase === 'showing' || phase === 'input') && (
           <div className="space-y-6 text-center">
             <div>
-              <p className="text-blue-300/50 text-sm mb-1">
+              <p className="text-slate-500 text-sm mb-1">
                 {phase === 'showing' ? '👀 Watch carefully...' : `🎯 Your turn! (${playerSeq.length}/${sequence.length})`}
               </p>
               <div className="flex justify-center gap-1.5 flex-wrap">
@@ -800,7 +800,7 @@ function SimonSaysEx({ exerciseState, setExerciseState, onComplete, onClose, lev
               </div>
             </div>
             <SimonButtons />
-            {phase === 'showing' && <p className="text-xs text-blue-300/25 animate-pulse">Watch the sequence…</p>}
+            {phase === 'showing' && <p className="text-xs text-slate-400 animate-pulse">Watch the sequence…</p>}
           </div>
         )}
 
@@ -809,7 +809,7 @@ function SimonSaysEx({ exerciseState, setExerciseState, onComplete, onClose, lev
             customMessage={isCorrect ? `Flawless! ${sequence.length} steps memorized.` : `You got ${playerSeq.length - 1} of ${sequence.length} steps.`}
             detail={
               <div className="space-y-2 text-sm text-center">
-                <p className="text-blue-300/40 text-xs">Correct sequence:</p>
+                <p className="text-slate-400 text-xs">Correct sequence:</p>
                 <div className="flex justify-center gap-2 flex-wrap">
                   {sequence.map((s, i) => (
                     <div key={i} className={`w-7 h-7 rounded-lg ${COLORS[s].bg} ${i < playerSeq.length - 1 ? 'opacity-100' : i === playerSeq.length - 1 && !isCorrect ? 'opacity-100 ring-2 ring-red-400' : 'opacity-60'}`} />
@@ -856,7 +856,7 @@ function NumberSeqEx({ exerciseState, setExerciseState, onComplete, onClose, lev
             <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center mx-auto border border-blue-500/30"><Hash className="w-7 h-7 text-blue-400" /></div>
             <div>
               <h3 className="font-display text-xl font-bold text-white mb-2">Number Sequence</h3>
-              <p className="text-blue-300/50 text-sm"><span className="text-white font-medium">{seqLen} digits</span> appear for 5 seconds. Memorize them, then type them back.</p>
+              <p className="text-slate-500 text-sm"><span className="text-white font-medium">{seqLen} digits</span> appear for 5 seconds. Memorize them, then type them back.</p>
               {level >= 3 && <p className="text-yellow-400/50 text-xs mt-2">Level {level} — {seqLen}-digit challenge!</p>}
             </div>
             <Button onClick={start} className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-display font-semibold">Start</Button>
@@ -864,20 +864,20 @@ function NumberSeqEx({ exerciseState, setExerciseState, onComplete, onClose, lev
         )}
         {exerciseState.phase === 'active' && (
           <div className="text-center space-y-5 py-8">
-            <p className="text-blue-300/40 text-sm">Memorize this sequence:</p>
+            <p className="text-slate-400 text-sm">Memorize this sequence:</p>
             <motion.div initial={{ scale: 0.85, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
               className="font-display text-5xl font-bold text-white tracking-[0.15em]">
               {exerciseState.data.sequence.join(' ')}
             </motion.div>
-            <p className="text-xs text-blue-300/25">Disappears in 5 seconds…</p>
+            <p className="text-xs text-slate-400">Disappears in 5 seconds…</p>
           </div>
         )}
         {exerciseState.phase === 'input' && (
           <div className="space-y-5">
-            <p className="text-center text-blue-300/50 text-sm">What was the sequence?</p>
+            <p className="text-center text-slate-500 text-sm">What was the sequence?</p>
             <Input value={input} onChange={e => setInput(e.target.value.replace(/\D/g, ''))}
               placeholder={`${seqLen} digits`}
-              className="text-center text-2xl tracking-[0.2em] bg-white/8 border-white/15 text-white placeholder:text-white/15 rounded-xl h-14"
+              className="text-center text-2xl tracking-[0.2em] bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl h-14"
               maxLength={seqLen} autoFocus onKeyDown={e => e.key === 'Enter' && input.length === seqLen && check()} />
             <Button onClick={check} className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-display font-semibold" disabled={input.length !== seqLen}>Check Answer</Button>
           </div>
@@ -885,10 +885,10 @@ function NumberSeqEx({ exerciseState, setExerciseState, onComplete, onClose, lev
         {exerciseState.phase === 'feedback' && (
           <FeedbackBlock isCorrect={exerciseState.isCorrect} sound={sound} onComplete={() => onComplete(exerciseState.isCorrect)}
             detail={<>
-              <p className="text-xs text-blue-300/35 mb-1.5">Correct sequence:</p>
+              <p className="text-xs text-slate-400 mb-1.5">Correct sequence:</p>
               <p className="font-display text-2xl font-bold text-white tracking-[0.15em]">{exerciseState.data.sequence.join(' ')}</p>
               {!exerciseState.isCorrect && <>
-                <p className="text-xs text-blue-300/35 mt-3 mb-1.5">Your answer:</p>
+                <p className="text-xs text-slate-400 mt-3 mb-1.5">Your answer:</p>
                 <p className="font-display text-2xl font-bold text-red-400 tracking-[0.15em]">{exerciseState.userAnswer.split('').join(' ')}</p>
               </>}
             </>}
@@ -926,7 +926,7 @@ function WordAssocEx({ exerciseState, setExerciseState, onComplete, onClose, sou
             <div className="w-14 h-14 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto border border-green-500/30"><Link2 className="w-7 h-7 text-green-400" /></div>
             <div>
               <h3 className="font-display text-xl font-bold text-white mb-2">Word Chain</h3>
-              <p className="text-blue-300/50 text-sm">Build a chain of 5 words, each associated with the previous one. Strengthen semantic memory.</p>
+              <p className="text-slate-500 text-sm">Build a chain of 5 words, each associated with the previous one. Strengthen semantic memory.</p>
             </div>
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-4">
               <p className="text-xs text-green-300/40 mb-1">Starting word:</p>
@@ -941,18 +941,18 @@ function WordAssocEx({ exerciseState, setExerciseState, onComplete, onClose, sou
               {words.map((w, i) => (
                 <motion.div key={i} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-3">
                   <div className="w-7 h-7 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-sm font-display font-semibold flex-shrink-0">{i + 1}</div>
-                  <div className="flex-1 bg-white/5 border border-white/8 rounded-xl px-3 py-2 text-white font-medium text-sm">{w}</div>
+                  <div className="flex-1 bg-white/20 border border-white/30 rounded-xl px-3 py-2 text-white font-medium text-sm">{w}</div>
                 </motion.div>
               ))}
             </div>
             {words.length < 6 && (
               <div className="flex gap-2 pt-1">
                 <Input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && addWord()}
-                  placeholder="Next associated word…" className="bg-white border-white/15 text-gray-900 placeholder:text-gray-400/20 rounded-xl" autoFocus />
+                  placeholder="Next associated word…" className="bg-white border-white/15 text-gray-900 placeholder:text-gray-400 rounded-xl" autoFocus />
                 <Button onClick={addWord} disabled={!input.trim()} className="bg-green-600 hover:bg-green-500 text-white rounded-xl">Add</Button>
               </div>
             )}
-            <p className="text-xs text-blue-300/25">{Math.max(0, 6 - words.length)} more needed</p>
+            <p className="text-xs text-slate-400">{Math.max(0, 6 - words.length)} more needed</p>
           </div>
         )}
         {exerciseState.phase === 'feedback' && (
@@ -1006,27 +1006,27 @@ function VisualPatEx({ exerciseState, setExerciseState, onComplete, onClose, sou
             <div className="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto border border-purple-500/30"><Eye className="w-7 h-7 text-purple-400" /></div>
             <div>
               <h3 className="font-display text-xl font-bold text-white mb-2">Pattern Recognition</h3>
-              <p className="text-blue-300/50 text-sm">A color grid appears for 4 seconds. Memorize it, then find the match from 4 options.</p>
+              <p className="text-slate-500 text-sm">A color grid appears for 4 seconds. Memorize it, then find the match from 4 options.</p>
             </div>
             <Button onClick={start} className="w-full bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-display font-semibold">Start</Button>
           </div>
         )}
         {exerciseState.phase === 'active' && (
           <div className="text-center space-y-5 py-8">
-            <p className="text-blue-300/40 text-sm">Memorize this pattern:</p>
+            <p className="text-slate-400 text-sm">Memorize this pattern:</p>
             <motion.div initial={{ scale: 0.85, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="flex justify-center">
               {renderGrid(exerciseState.data.pattern, 'w-16 h-16')}
             </motion.div>
-            <p className="text-xs text-blue-300/25">Disappears in 4 seconds…</p>
+            <p className="text-xs text-slate-400">Disappears in 4 seconds…</p>
           </div>
         )}
         {exerciseState.phase === 'input' && (
           <div className="space-y-4">
-            <p className="text-center text-blue-300/50 text-sm">Which pattern did you see?</p>
+            <p className="text-center text-slate-500 text-sm">Which pattern did you see?</p>
             <div className="grid grid-cols-2 gap-3">
               {exerciseState.data.options.map((p: number[], i: number) => (
                 <div key={i} onClick={() => { setSelected(i); sound?.click() }}
-                  className={`p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-center ${selected === i ? 'border-purple-500 bg-purple-500/15' : 'border-white/8 bg-white/4 hover:border-purple-400/30'}`}>
+                  className={`p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-center ${selected === i ? 'border-purple-500 bg-purple-500/15' : 'border-slate-500 bg-white/10 hover:border-purple-400'}`}>
                   {renderGrid(p)}
                 </div>
               ))}
@@ -1039,7 +1039,7 @@ function VisualPatEx({ exerciseState, setExerciseState, onComplete, onClose, sou
         )}
         {exerciseState.phase === 'feedback' && (
           <FeedbackBlock isCorrect={exerciseState.isCorrect} sound={sound} onComplete={() => onComplete(exerciseState.isCorrect)}
-            detail={<><p className="text-xs text-blue-300/35 mb-2">Correct pattern:</p><div className="flex justify-center">{renderGrid(exerciseState.data.pattern, 'w-10 h-10')}</div></>}
+            detail={<><p className="text-xs text-slate-400 mb-2">Correct pattern:</p><div className="flex justify-center">{renderGrid(exerciseState.data.pattern, 'w-10 h-10')}</div></>}
           />
         )}
       </ExCard>
@@ -1075,7 +1075,7 @@ function BreathEx({ onComplete, onClose, sound }: any) {
             <div className="w-14 h-14 bg-cyan-500/20 rounded-2xl flex items-center justify-center mx-auto border border-cyan-500/30"><Wind className="w-7 h-7 text-cyan-400" /></div>
             <div>
               <h3 className="font-display text-xl font-bold text-white mb-2">4-4-4 Breathing</h3>
-              <p className="text-blue-300/50 text-sm">Box breathing: inhale 4s · hold 4s · exhale 4s. 5 cycles. Proven to reduce stress and sharpen focus.</p>
+              <p className="text-slate-500 text-sm">Box breathing: inhale 4s · hold 4s · exhale 4s. 5 cycles. Proven to reduce stress and sharpen focus.</p>
             </div>
             <Button onClick={start} className="w-full bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl font-display font-semibold">Start</Button>
           </div>
@@ -1146,7 +1146,7 @@ function ObjLocEx({ exerciseState, setExerciseState, onComplete, onClose, level,
             <div className="w-14 h-14 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto border border-orange-500/30"><MapPin className="w-7 h-7 text-orange-400" /></div>
             <div>
               <h3 className="font-display text-xl font-bold text-white mb-2">Spatial Memory</h3>
-              <p className="text-blue-300/50 text-sm"><span className="text-white font-medium">{objCount} objects</span> in a {cols}×{cols} grid. 5 seconds to memorize, then mark their positions.</p>
+              <p className="text-slate-500 text-sm"><span className="text-white font-medium">{objCount} objects</span> in a {cols}×{cols} grid. 5 seconds to memorize, then mark their positions.</p>
               {level >= 5 && <p className="text-yellow-400/50 text-xs mt-2">Level {level} — 5×5 grid!</p>}
             </div>
             <Button onClick={start} className="w-full bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-display font-semibold">Start</Button>
@@ -1154,20 +1154,20 @@ function ObjLocEx({ exerciseState, setExerciseState, onComplete, onClose, level,
         )}
         {exerciseState.phase === 'active' && (
           <div className="text-center space-y-4">
-            <p className="text-blue-300/40 text-sm">Memorize the positions:</p>
+            <p className="text-slate-400 text-sm">Memorize the positions:</p>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid gap-2 mx-auto"
               style={{ gridTemplateColumns: `repeat(${cols}, 1fr)`, maxWidth: `${cols * 58}px` }}>
               {Array.from({ length: gridSize }).map((_, i) => {
                 const oi = exerciseState.data.positions.indexOf(i)
-                return <div key={i} className="aspect-square bg-white/5 border border-white/8 rounded-xl flex items-center justify-center text-2xl">{oi >= 0 ? objects[oi] : ''}</div>
+                return <div key={i} className="aspect-square bg-white/10 border border-white/25 rounded-xl flex items-center justify-center text-2xl">{oi >= 0 ? objects[oi] : ''}</div>
               })}
             </motion.div>
-            <p className="text-xs text-blue-300/25">Disappears in 5 seconds…</p>
+            <p className="text-xs text-slate-400">Disappears in 5 seconds…</p>
           </div>
         )}
         {exerciseState.phase === 'input' && (
           <div className="space-y-4">
-            <p className="text-center text-blue-300/50 text-sm">Tap where the objects were:</p>
+            <p className="text-center text-slate-500 text-sm">Tap where the objects were:</p>
             <div className="grid gap-2 mx-auto" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)`, maxWidth: `${cols * 58}px` }}>
               {Array.from({ length: gridSize }).map((_, i) => (
                 <button key={i} onClick={() => toggle(i)}
@@ -1176,14 +1176,14 @@ function ObjLocEx({ exerciseState, setExerciseState, onComplete, onClose, level,
                 </button>
               ))}
             </div>
-            <p className="text-center text-xs text-blue-300/30">{selected.length} of {objCount} selected</p>
+            <p className="text-center text-xs text-slate-400">{selected.length} of {objCount} selected</p>
             <Button onClick={check} className="w-full bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-display font-semibold" disabled={selected.length !== objCount}>Check Answer</Button>
           </div>
         )}
         {exerciseState.phase === 'feedback' && (
           <FeedbackBlock isCorrect={exerciseState.isCorrect} sound={sound} onComplete={() => onComplete(exerciseState.isCorrect)}
             detail={<>
-              <p className="text-xs text-blue-300/35 mb-2">Correct positions:</p>
+              <p className="text-xs text-slate-400 mb-2">Correct positions:</p>
               <div className="grid gap-1.5 mx-auto" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)`, maxWidth: `${cols * 46}px` }}>
                 {Array.from({ length: gridSize }).map((_, i) => {
                   const oi = exerciseState.data.positions.indexOf(i); const ws = exerciseState.userAnswer?.includes(i)
@@ -1213,7 +1213,7 @@ function CoachView({ stats, streak, insight, loading, onFetch, onBack }: any) {
       <div className="mesh-bg" />
       <div className="relative z-10 max-w-lg mx-auto px-4 py-6 space-y-5">
         <div className="flex items-center gap-3">
-          <button onClick={onBack} className="flex items-center gap-1.5 text-blue-300/50 hover:text-white text-sm transition-colors"><ArrowLeft className="w-4 h-4" />Back</button>
+          <button onClick={onBack} className="flex items-center gap-1.5 text-slate-500 hover:text-white text-sm transition-colors"><ArrowLeft className="w-4 h-4" />Back</button>
           <h1 className="font-display text-xl font-bold text-white">AI Memory Coach</h1>
         </div>
 
@@ -1223,18 +1223,18 @@ function CoachView({ stats, streak, insight, loading, onFetch, onBack }: any) {
             <div className="w-10 h-10 rounded-xl bg-purple-500/25 flex items-center justify-center"><Sparkles className="w-5 h-5 text-purple-400" /></div>
             <div>
               <p className="font-display font-semibold text-white text-sm">Personal Insight</p>
-              <p className="text-xs text-blue-300/40">Powered by Claude AI</p>
+              <p className="text-xs text-slate-400">Powered by Claude AI</p>
             </div>
-            <button onClick={onFetch} disabled={loading} className="ml-auto text-blue-300/40 hover:text-blue-300 transition-colors">
+            <button onClick={onFetch} disabled={loading} className="ml-auto text-slate-400 hover:text-blue-300 transition-colors">
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             </button>
           </div>
 
           {loading && (
             <div className="space-y-2">
-              <div className="h-3 bg-white/8 rounded-full animate-pulse w-full" />
-              <div className="h-3 bg-white/8 rounded-full animate-pulse w-4/5" />
-              <div className="h-3 bg-white/8 rounded-full animate-pulse w-3/5" />
+              <div className="h-3 bg-slate-600 rounded-full animate-pulse w-full" />
+              <div className="h-3 bg-slate-600 rounded-full animate-pulse w-4/5" />
+              <div className="h-3 bg-slate-600 rounded-full animate-pulse w-3/5" />
             </div>
           )}
 
@@ -1246,7 +1246,7 @@ function CoachView({ stats, streak, insight, loading, onFetch, onBack }: any) {
 
           {!loading && !insight && (
             <div className="text-center py-4">
-              <p className="text-blue-300/40 text-sm mb-3">Get a personalized analysis of your training</p>
+              <p className="text-slate-400 text-sm mb-3">Get a personalized analysis of your training</p>
               <Button onClick={onFetch} className="bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-sm">
                 <Sparkles className="w-4 h-4 mr-2" />Get Insight
               </Button>
@@ -1273,10 +1273,10 @@ function CoachView({ stats, streak, insight, loading, onFetch, onBack }: any) {
                     </div>
                     <span className="text-white text-sm font-medium">{acc !== null ? `${acc}%` : '—'}</span>
                   </div>
-                  <div className="w-full bg-white/8 rounded-full h-1.5">
+                  <div className="w-full bg-slate-600 rounded-full h-1.5">
                     <div className={`h-1.5 rounded-full ${isWeak ? 'bg-orange-400' : 'bg-blue-400'}`} style={{ width: `${acc ?? 0}%` }} />
                   </div>
-                  <p className="text-xs text-blue-300/25 mt-1">{count} attempt{count !== 1 ? 's' : ''}</p>
+                  <p className="text-xs text-slate-400 mt-1">{count} attempt{count !== 1 ? 's' : ''}</p>
                 </div>
               )
             })}
@@ -1291,8 +1291,8 @@ function CoachView({ stats, streak, insight, loading, onFetch, onBack }: any) {
               const lv = i + 1; const achieved = level >= lv
               return (
                 <div key={lv} className={`flex items-center gap-3 rounded-xl p-2.5 ${lv === level ? 'bg-blue-500/15 border border-blue-500/25' : achieved ? 'bg-white/4' : 'opacity-40'}`}>
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-display font-bold ${lv === level ? 'bg-blue-500 text-white' : achieved ? 'bg-white/15 text-white' : 'bg-white/8 text-white/40'}`}>{lv}</div>
-                  <span className={`text-sm ${lv === level ? 'text-white font-medium' : 'text-blue-300/60'}`}>{title}</span>
+                  <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-display font-bold ${lv === level ? 'bg-blue-500 text-white' : achieved ? 'bg-white/15 text-white' : 'bg-white/8 text-slate-400'}`}>{lv}</div>
+                  <span className={`text-sm ${lv === level ? 'text-white font-medium' : 'text-slate-400'}`}>{title}</span>
                   {lv === level && <span className="ml-auto text-xs text-blue-400/70">Current</span>}
                   {achieved && lv < level && <CheckCircle2 className="ml-auto w-4 h-4 text-green-400/60" />}
                 </div>
@@ -1324,7 +1324,7 @@ function ProgressView({ stats, currentStreak, longestStreak, onBack, sound }: an
       <div className="mesh-bg" />
       <div className="relative z-10 max-w-2xl mx-auto px-4 py-6 space-y-5">
         <div className="flex items-center gap-3">
-          <button onClick={onBack} className="flex items-center gap-1.5 text-blue-300/50 hover:text-white text-sm transition-colors"><ArrowLeft className="w-4 h-4" />Back</button>
+          <button onClick={onBack} className="flex items-center gap-1.5 text-slate-500 hover:text-white text-sm transition-colors"><ArrowLeft className="w-4 h-4" />Back</button>
           <h1 className="font-display text-xl font-bold text-white">Progress</h1>
         </div>
 
@@ -1338,7 +1338,7 @@ function ProgressView({ stats, currentStreak, longestStreak, onBack, sound }: an
             <div key={s.label} className="glass rounded-2xl p-4 text-center">
               <div className="flex justify-center mb-1.5">{s.icon}</div>
               <p className="font-display font-bold text-2xl text-white">{s.value}</p>
-              <p className="text-xs text-blue-300/35 mt-0.5">{s.sub}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{s.sub}</p>
             </div>
           ))}
         </div>
@@ -1347,14 +1347,14 @@ function ProgressView({ stats, currentStreak, longestStreak, onBack, sound }: an
         <div className="glass rounded-2xl p-5">
           <h3 className="font-display font-semibold text-white text-sm mb-4 flex items-center gap-2"><Calendar className="w-4 h-4" />{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</h3>
           <div className="grid grid-cols-7 gap-1 mb-2">
-            {['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => <div key={d} className="text-center text-xs text-blue-300/25">{d}</div>)}
+            {['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => <div key={d} className="text-center text-xs text-slate-400">{d}</div>)}
           </div>
           <div className="grid grid-cols-7 gap-1">
             {getMonthDates().map((date, i) => {
               if (!date) return <div key={i} />
               const done = stats.history.some((h: CompletionData) => h.date === date.toDateString())
               const isToday = date.toDateString() === new Date().toDateString()
-              return <div key={i} className={`aspect-square rounded-lg flex items-center justify-center text-xs font-medium ${done ? 'bg-gradient-to-br from-green-500 to-emerald-600 text-white' : isToday ? 'border-2 border-blue-400/60 text-blue-300' : 'bg-white/4 text-blue-300/25'}`}>
+              return <div key={i} className={`aspect-square rounded-lg flex items-center justify-center text-xs font-medium ${done ? 'bg-gradient-to-br from-green-500 to-emerald-600 text-white' : isToday ? 'border-2 border-blue-400/60 text-blue-300' : 'bg-white/4 text-slate-400'}`}>
                 {done ? <CheckCircle2 className="w-3.5 h-3.5" /> : date.getDate()}
               </div>
             })}
@@ -1368,17 +1368,17 @@ function ProgressView({ stats, currentStreak, longestStreak, onBack, sound }: an
             {MILESTONES.map(m => {
               const done = longestStreak >= m.days
               return (
-                <div key={m.days} className={`flex items-center justify-between rounded-xl p-3 border ${done ? 'bg-green-500/8 border-green-500/20' : 'bg-white/4 border-white/8'}`}>
+                <div key={m.days} className={`flex items-center justify-between rounded-xl p-3 border ${done ? 'bg-green-500/8 border-green-500/20' : 'bg-white/8 border-slate-500'}`}>
                   <div className="flex items-center gap-3">
                     <span className="text-xl">{m.icon}</span>
                     <div>
-                      <p className={`font-semibold text-sm ${done ? 'text-white' : 'text-blue-300/35'}`}>{m.label}</p>
-                      <p className="text-xs text-blue-300/25">{m.days}-day streak</p>
+                      <p className={`font-semibold text-sm ${done ? 'text-white' : 'text-slate-400'}`}>{m.label}</p>
+                      <p className="text-xs text-slate-400">{m.days}-day streak</p>
                     </div>
                   </div>
                   {done
                     ? <CheckCircle2 className="w-5 h-5 text-green-400" />
-                    : <span className="text-xs text-blue-300/25">{m.days - longestStreak} more days</span>
+                    : <span className="text-xs text-slate-400">{m.days - longestStreak} more days</span>
                   }
                 </div>
               )
