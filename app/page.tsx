@@ -627,7 +627,7 @@ export default function MemoryApp() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <Button onClick={handleShare} variant="outline" className="border-white/15 text-blue-300 hover:text-white hover:bg-white/10 rounded-xl">
+                  <Button onClick={handleShare} className="border border-white/15 text-blue-300 hover:text-white hover:bg-white/10 rounded-xl">
                     <Share2 className="w-4 h-4 mr-2" /> Share
                   </Button>
                   <Button onClick={() => setCelebrate(false)} className="bg-blue-600 hover:bg-blue-500 text-white rounded-xl">
