@@ -948,7 +948,7 @@ function WordAssocEx({ exerciseState, setExerciseState, onComplete, onClose, sou
             {words.length < 6 && (
               <div className="flex gap-2 pt-1">
                 <Input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && addWord()}
-                  placeholder="Next associated word…" className="bg-white/8 border-white/15 text-white placeholder:text-white/20 rounded-xl" autoFocus />
+                  placeholder="Next associated word…" className="bg-white/8 border-white/15 text-gray-900 placeholder:text-gray-400/20 rounded-xl" autoFocus />
                 <Button onClick={addWord} disabled={!input.trim()} className="bg-green-600 hover:bg-green-500 text-white rounded-xl">Add</Button>
               </div>
             )}
