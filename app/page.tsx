@@ -358,7 +358,7 @@ export default function MemoryApp() {
 
   if (view === 'progress') return <ProgressView stats={stats} currentStreak={currentStreak} longestStreak={longestStreak} onBack={() => setView('home')} sound={sound} />
   if (view === 'coach') return <CoachView stats={stats} streak={currentStreak} insight={insight} loading={coachLoading} onFetch={() => getInsight(stats, currentStreak)} onBack={() => setView('home')} />
-  if (activeExercise) return <ExerciseView exercise={activeExercise} exerciseState={exerciseState} setExerciseState={setExerciseState} onComplete={(c) => completeExercise(activeExercise.id, c)} onClose={() => { setActiveExercise(null); setExerciseState({ phase: 'instructions' }) }} level={level} sound={sound} />
+  if (activeExercise) return <ExerciseView exercise={activeExercise} exerciseState={exerciseState} setExerciseState={setExerciseState} onComplete={(c: boolean) => completeExercise(activeExercise.id, c)} onClose={() => { setActiveExercise(null); setExerciseState({ phase: 'instructions' }) }} level={level} sound={sound} />
 
   return (
     <div className="min-h-screen relative" style={{ background: '#050a14' }}>
