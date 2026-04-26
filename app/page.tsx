@@ -877,7 +877,7 @@ function NumberSeqEx({ exerciseState, setExerciseState, onComplete, onClose, lev
             <p className="text-center text-slate-500 text-sm">What was the sequence?</p>
             <Input value={input} onChange={e => setInput(e.target.value.replace(/\D/g, ''))}
               placeholder={`${seqLen} digits`}
-              className="text-center text-2xl tracking-[0.2em] bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl h-14"
+              className="text-center text-2xl tracking-[0.2em] bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 rounded-xl h-14" style={{backgroundColor: 'white', color: '#111827'}}
               maxLength={seqLen} autoFocus onKeyDown={e => e.key === 'Enter' && input.length === seqLen && check()} />
             <Button onClick={check} className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-display font-semibold" disabled={input.length !== seqLen}>Check Answer</Button>
           </div>
