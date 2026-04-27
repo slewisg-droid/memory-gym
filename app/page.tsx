@@ -901,10 +901,11 @@ function NumberSeqEx({ exerciseState, setExerciseState, onComplete, onClose, lev
         {exerciseState.phase === 'input' && (
           <div className="space-y-5">
             <p className="text-center text-blue-300/50 text-sm">What was the sequence?</p>
-            <Input value={input} onChange={e => setInput(e.target.value.replace(/\D/g, ''))}
+            <input value={input} onChange={e => setInput(e.target.value.replace(/\D/g, ""))}
               placeholder={`${seqLen} digits`}
-              className="text-center text-2xl tracking-[0.2em] bg-white/8 border-white/15 text-white placeholder:text-white/15 rounded-xl h-14"
-              maxLength={seqLen} autoFocus onKeyDown={e => e.key === 'Enter' && input.length === seqLen && check()} />
+              maxLength={seqLen} autoFocus onKeyDown={e => e.key === "Enter" && input.length === seqLen && check()}
+              style={{ backgroundColor: "#ffffff", color: "#111827", borderColor: "#d1d5db" }}
+              className="w-full text-center text-2xl tracking-[0.2em] rounded-xl h-14 border-2 px-4 outline-none focus:border-blue-500" />
             <Button onClick={check} className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-display font-semibold" disabled={input.length !== seqLen}>Check Answer</Button>
           </div>
         )}
